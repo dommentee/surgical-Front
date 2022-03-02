@@ -21,7 +21,7 @@ import Chart  from './components/Chart';
 import HealChart from './components/HealChart';
 import { Session } from 'inspector';
 
-const procedureApi = 'http://localhost:3001/procedures/';
+const procedureApi = 'https://surgical-app-back.herokuapp.com/procedures/';
 const App = () => {
   ///USERS
   //state of user 
@@ -36,7 +36,7 @@ const App = () => {
 
   //procedures routes 
   const getProcedures = () => {
-    axios.get('http://localhost:3001/procedures')
+    axios.get('https://surgical-app-back.herokuapp.com/procedures')
     .then((response) => setProcedures(response.data),
     (err) => console.error(err.message));
   }
@@ -44,21 +44,21 @@ const App = () => {
   
   //create fuction
   const handleCreate = (newProcedure: Procedure) => {
-    axios.post('http://localhost:3001/procedures', newProcedure)
+    axios.post('https://surgical-app-back.herokuapp.com/procedures', newProcedure)
     .then((response) => getProcedures(),
       (err) => console.error(err.message));
       console.log(newProcedure);
   }
   //update
   const handleUpdate = (editProcedure: Procedure) => {
-    axios.put('http://localhost:3001/procedures/' + editProcedure.procedure_id, editProcedure)
+    axios.put('https://surgical-app-back.herokuapp.com/procedures/' + editProcedure.procedure_id, editProcedure)
     .then((response) => getProcedures(),
     (err) => console.error(err.message));
     console.log(editProcedure);     
   }
   //delete
   const handleDelete = (e: any) => {
-    axios.delete('http://localhost:3001/procedures/' + e.target.value)
+    axios.delete('https://surgical-app-back.herokuapp.com/procedures/' + e.target.value)
     .then((response) => getProcedures(),
     (err) => console.error(err.message));
   }
@@ -69,20 +69,20 @@ const App = () => {
   const createUser = (newUser: User) => {
     console.log(newUser);
     //@ts-ignore
-    axios.post('http://localhost:3001/users', newUser, {withCredentials: true})
+    axios.post('https://surgical-app-back.herokuapp.com/users', newUser, {withCredentials: true})
     .then((response) => response,
     (err) => console.error(err.message));
   }
   const createToken = (user_name: User, password: User) => {
       // {withCredentials: true}
-      axios.post('http://localhost:3001/login', { user_name , password },{withCredentials: true})
+      axios.post('https://surgical-app-back.herokuapp.com/login', { user_name , password },{withCredentials: true})
       .then((response) => getUser(),
       (err) => console.error(err.message));
       
   }
 
   const getUser = () => {
-    axios.get('http://localhost:3001/users', {withCredentials: true})
+    axios.get('https://surgical-app-back.herokuapp.com/users', {withCredentials: true})
     .then((response) => setUser(response.data),  
     (err) => console.error(err.message));
     console.log(user);
@@ -91,7 +91,7 @@ const App = () => {
 
 
   const logout = () => {
-    fetch('http://localhost:3001/logout', {
+    fetch('https://surgical-app-back.herokuapp.com/logout', {
       method: 'POST',
       redirect: 'follow',
       credentials: 'include', // Don't forget to specify this if you need cookies
