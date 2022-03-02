@@ -21,7 +21,7 @@ import Chart  from './components/Chart';
 import HealChart from './components/HealChart';
 import { Session } from 'inspector';
 
-const procedureApi = 'https://still-plateau-52039.herokuapp.com/procedures/';
+const procedureApi = 'http://localhost:3001/procedures/';
 const App = () => {
   ///USERS
   //state of user 
@@ -36,7 +36,7 @@ const App = () => {
 
   //procedures routes 
   const getProcedures = () => {
-    axios.get('https://still-plateau-52039.herokuapp.com/procedures')
+    axios.get('http://localhost:3001/procedures')
     .then((response) => setProcedures(response.data),
     (err) => console.error(err.message));
   }
@@ -44,21 +44,21 @@ const App = () => {
   
   //create fuction
   const handleCreate = (newProcedure: Procedure) => {
-    axios.post('https://still-plateau-52039.herokuapp.com/procedures', newProcedure)
+    axios.post('http://localhost:3001/procedures', newProcedure)
     .then((response) => getProcedures(),
       (err) => console.error(err.message));
       console.log(newProcedure);
   }
   //update
   const handleUpdate = (editProcedure: Procedure) => {
-    axios.put('https://still-plateau-52039.herokuapp.com/procedures/' + editProcedure.procedure_id, editProcedure)
+    axios.put('http://localhost:3001/procedures/' + editProcedure.procedure_id, editProcedure)
     .then((response) => getProcedures(),
     (err) => console.error(err.message));
     console.log(editProcedure);     
   }
   //delete
   const handleDelete = (e: any) => {
-    axios.delete('https://still-plateau-52039.herokuapp.com/procedures/' + e.target.value)
+    axios.delete('http://localhost:3001/procedures/' + e.target.value)
     .then((response) => getProcedures(),
     (err) => console.error(err.message));
   }

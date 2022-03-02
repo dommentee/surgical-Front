@@ -11,8 +11,7 @@ import { userInfo } from "os";
 //healing time
 const ProcedureForm = (props: any) => {
     //set state of form
-
-    const defaultForm = {name: '', price: '', hospital_name: '',hospital_city: '',hospital_state: '',hospital_rating: '',heal_time: '', contributor_id: ''}
+    const defaultForm = {name: '', price: '', hospital_name: '',hospital_city: '',hospital_state: '',hospital_rating: '',heal_time: '', contributor_id: props.user.id}
     let [procedure, setProcedure] = useState(defaultForm)
 
     //handle change
@@ -109,7 +108,7 @@ const ProcedureForm = (props: any) => {
                     type="text"
                     name="contributor_id"
                     onChange={handleChange}
-                    value={props.user.id}
+                    value={procedure.contributor_id}
                     className="input"
                     readOnly={true}
                     

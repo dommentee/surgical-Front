@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import '../sass/login-logout.scss'
-
+import { useNavigate} from 'react-router-dom'
 const Login = (props: any) => {
+
+    let navagate = useNavigate()
 
     const defaultForm = {user_name: '', password: ''}
     let [userLogin, setUserLogin] = useState(defaultForm)
@@ -10,8 +12,8 @@ const Login = (props: any) => {
     } 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log(userLogin);
-        props.createToken(userLogin.user_name, userLogin.password)        
+        props.createToken(userLogin.user_name, userLogin.password)   
+        navagate('/login')
     }
     return(
         <div className="form-wrap">

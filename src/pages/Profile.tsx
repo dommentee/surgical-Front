@@ -1,15 +1,17 @@
-import { userInfo } from 'os'
+
 import React,{useState} from 'react'
 import { useNavigate} from 'react-router-dom'
-
+import Login from '../pages/Login'
 
 import EditProcedureForm from '../components/EditProcedureForm'
 import { Procedure } from '../helpers/types'
 import '../sass/profile.scss'
 
+
 const Profile = (props: any) => {
     let navagate = useNavigate()
-    if(!props.user) return <div>loading...</div>
+    if(!props.user) return <Login />
+    
     return (
         <div className="profile-wrap">
             <div className="user">
@@ -27,31 +29,39 @@ const Profile = (props: any) => {
             </div>
             <div className="right">
                 <h3>Your contributions</h3>
-                <div id="user-data">
+                <div className="user-data">
                     {
                         props.procedures ? 
                         (
-                        props.procedures.map((procedure: Procedure) => (
-                        <div className="procedure" key={procedure.procedure_id}>
-                            <table>
-                                <td>Procedure: {procedure.name}</td>
-                                <td>Price: {procedure.price}</td>
-                                <td>Hospital: {procedure.hospital_name}</td>
-                                <td>City: {procedure.hospital_city}</td>
-                                <td>State: {procedure.hospital_state}</td>
-                                <td>rating: {procedure.hospital_rating}</td>
-                                <td>healing: {procedure.heal_time}</td>
-                            </table>
-                            <EditProcedureForm  
-                                procedure={procedure}
-                                handleUpdate={props.handleUpdate}
-                            />
-                            <button className="delete" onClick={props.handleDelete } value={procedure.procedure_id}>
-                                Delete
-                            </button>
-                        </div>
+                            props.procedures.map((procedure: Procedure) => (
+                                <div className="procedure" key={procedure.procedure_id}>
+
+                                {
+                                    procedure.contributor_id === props.user.id ?
+                                    (
+                                        <div>
+                                            <table>
+                                                <td>Procedure: {procedure.name}</td>
+                                                <td>Price: {procedure.price}</td>
+                                                <td>Hospital: {procedure.hospital_name}</td>
+                                                <td>City: {procedure.hospital_city}</td>
+                                                <td>State: {procedure.hospital_state}</td>
+                                                <td>rating: {procedure.hospital_rating}</td>
+                                                <td>healing: {procedure.heal_time}</td>
+                                            </table>
+                                            <EditProcedureForm  
+                                                procedure={procedure}
+                                                handleUpdate={props.handleUpdate}
+                                            />
+                                            <button className="delete" onClick={props.handleDelete } value={procedure.procedure_id}>
+                                                Delete
+                                            </button>
+                                        </div>
+                                    ):null
+                                }
+                            </div>
                         ))
-                        ): <></>
+                        ):null
                     }
                 </div>
             </div>

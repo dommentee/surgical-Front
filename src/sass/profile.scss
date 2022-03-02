@@ -24,10 +24,13 @@
         background-color: #F7F7F7;
         
 
-        #user-data {
+        .user-data {
             font-size: .8em;
             height: fit-content;
+        }
 
+        .not-here {
+           display: none;
         }
         h3 {
             padding: 0 0 10px 0;
