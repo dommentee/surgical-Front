@@ -1,19 +1,18 @@
-import React,{ChangeEvent, useState} from "react";
+import React,{ChangeEvent, useEffect, useState} from "react";
 import '../sass/procedure-form.scss'
 import '../helpers/user'
-import { userInfo } from "os";
-
+import Login from "../pages/Login";
 //procedure name
 //Price
 //hospital name
 //address // city, state
 //hospital expierence rating
 //healing time
-const ProcedureForm = (props: any) => {
+const ProcedureForm = (props: any) => { 
     //set state of form
-    const defaultForm = {name: '', price: '', hospital_name: '',hospital_city: '',hospital_state: '',hospital_rating: '',heal_time: '', contributor_id: props.user.id}
+    let defaultForm = {name: '', price: '', hospital_name: '',hospital_city: '',hospital_state: '',hospital_rating: '',heal_time: '', contributor_id: props.user.id!}
     let [procedure, setProcedure] = useState(defaultForm)
-
+        
     //handle change
     // targets the value of each input baed on name
     //spreads throuh the value
@@ -24,11 +23,7 @@ const ProcedureForm = (props: any) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         props.handleCreate(procedure)        
-    }
-
-    if(!props.user) return <div>loading...</div>
-    console.log(props.user.id);
-    
+    }    
     return (
         <div className="procedure-form">
             <form onSubmit={handleSubmit}> 

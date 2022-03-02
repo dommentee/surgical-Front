@@ -116,9 +116,12 @@ const App = () => {
   },[searchResults])
 
   useEffect(() => {
+  },[getUser])
+
+  useEffect(() => {
     // makeRequest(`${searchInput}`)
     getProcedures()
-    getUser()
+    // getUser()
   },[])
 
 
@@ -189,7 +192,7 @@ const App = () => {
         }
         <Routes>
           <Route path="/" element={
-            <Home />
+            <Home  user={user}/>
           }/>
           <Route path="/signup" element={<Signup createUser={createUser}/>}/>
           <Route path="/login" element={<Login createToken={createToken}/>}/>

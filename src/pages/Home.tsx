@@ -14,6 +14,7 @@ import '../sass/home.scss'
 
 const Home = (props: any ) => {
       //navaget is used to route for different button 
+
   let navagate = useNavigate()
     return (
         <div className="home">
@@ -32,7 +33,12 @@ const Home = (props: any ) => {
           		    </span>
  
                     <div>contribue now</div>
-                    <div className="upload-button" onClick={() => navagate('/contribute')}>Up load procedure</div>
+                    {
+                        props.user ? 
+                        (
+                            <div className="upload-button" onClick={() => navagate('/contribute')}>Up load procedure</div>
+                        ): <div className="upload-button" onClick={() => navagate('/login')}>login to share now</div>
+                    }
 			    </div>
 			</div>
 
