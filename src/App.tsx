@@ -19,9 +19,10 @@ import ProcedureForm from './components/ProcedureForm';
 import Profile from './pages/Profile';
 import Chart  from './components/Chart';
 import HealChart from './components/HealChart';
-import { Session } from 'inspector';
 
 const procedureApi = 'https://surgical-app-back.herokuapp.com/procedures/';
+
+const localBack = 'http://localhost:3001'
 const App = () => {
   ///USERS
   //state of user 
@@ -75,6 +76,12 @@ const App = () => {
   }
   const createToken = (user_name: User, password: User) => {
       // {withCredentials: true}
+      // fetch('https://surgical-app-back.herokuapp.com/login', {
+      //   method: 'POST',
+      //   redirect: 'follow',
+      //   credentials: 'include',
+      //   body: JSON.stringify( { user_name , password })
+      // }).then((response) => getUser(),(err) => console.error(err.message));
       axios.post('https://surgical-app-back.herokuapp.com/login', { user_name , password },{withCredentials: true})
       .then((response) => getUser(),
       (err) => console.error(err.message));
@@ -115,13 +122,13 @@ const App = () => {
   useEffect(() => {
   },[searchResults])
 
-  useEffect(() => {
-  },[getUser])
+  // useEffect(() => {
+  // },[getUser])
 
   useEffect(() => {
     // makeRequest(`${searchInput}`)
     getProcedures()
-    // getUser()
+    getUser()
   },[])
 
 
